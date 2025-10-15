@@ -9,6 +9,7 @@ import Skills from './sections/Skills';
 import Projects from './sections/Projects';
 import ConsoleGallery from './sections/ConsoleGallery';
 import Contact from './sections/Contact';
+import Experience from './sections/Experience'
 import Footer from './components/Footer';
 
 function App() {
@@ -21,8 +22,9 @@ function App() {
       <Box as="section" id="home"><Home /></Box>
       <Box as="section" id="about"><About /></Box>
       <Box as="section" id="skills"><Skills /></Box>
+      <Box as="section" id="experience"><Experience /></Box>
       <Box as="section" id="projects"><Projects /></Box>
-      <Box as="section" id="console"><ConsoleGallery /></Box>
+      {/* <Box as="section" id="console"><ConsoleGallery /></Box> */}
       <Box as="section" id="contact"><Contact /></Box>
     </Box>
     <Footer/>
