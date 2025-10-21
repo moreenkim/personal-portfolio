@@ -1,16 +1,27 @@
-import { Box, Heading, Text, SimpleGrid, List, ListItem } from '@chakra-ui/react';
+import {
+  Box,
+  Heading,
+  List,
+  ListItem,
+  Icon,
+  useColorModeValue,
+  SimpleGrid,
+} from '@chakra-ui/react';
+import { CheckCircleIcon } from '@chakra-ui/icons';
 
 const skills = [
   {
     title: '☁️ Cloud Platforms & Services',
+    color: 'blue.400',
     items: [
       'AWS Certified Cloud Practitioner (CLF-C02)',
       'EC2, S3, IAM, CloudFront, Route 53, Lambda',
-      'CloudWatch, RDS, Microsoft 365, Box, OneDrive, Azure AD',
+      'CloudWatch, RDS, Microsoft 365, Azure AD',
     ],
   },
   {
     title: '💻 Frontend Development',
+    color: 'teal.400',
     items: [
       'React.js, Redux, Chakra UI',
       'HTML, CSS, Tailwind, Bootstrap',
@@ -18,86 +29,72 @@ const skills = [
     ],
   },
   {
-    title: ' Backend & APIs',
+    title: '🛠️ Backend & APIs',
+    color: 'orange.400',
     items: [
       'Node.js, Express, RESTful APIs',
       'Postman, Axios',
-      'Authentication: OAuth2, SSO, MFA',
-      'Directory Services: Active Directory, Kerberos',
+      'OAuth2, SSO, MFA, Active Directory',
     ],
   },
   {
     title: '🗃️ Databases',
-    items: ['MongoDB Compass, Firebase', 'RDS (AWS Relational Database Service)'],
+    color: 'purple.400',
+    items: ['MongoDB Compass, Firebase', 'AWS RDS'],
   },
   {
     title: '🧪 Testing & CI/CD',
-    items: ['Jest + Enzyme', 'Travis CI, CircleCI, GitHub Actions', 'Heroku Deployment'],
+    color: 'green.400',
+    items: ['Jest + Enzyme', 'GitHub Actions, Heroku Deployment'],
   },
   {
-    title: ' Network Protocols & Security',
-    items: [
-      'DNS, HTTP/S, SSL, TCP/IP',
-      'OSI Model, VPNs, VLANs, Firewalls',
-      'IAM lifecycle tasks, CLI tools: ping, dig, traceroute',
-    ],
-  },
-  {
-    title: ' Operating Systems & Scripting',
-    items: [
-      'UNIX/Linux, Windows Server 2012 R2, MacOS',
-      'Bash scripting for automation',
-      'SSH for secure remote access',
-    ],
-  },
-  {
-    title: ' Support Tools & Collaboration',
-    items: [
-      'Git, GitHub, Agile/Scrum',
-      'Jira, Slack, Notion, ClickUp',
-      'TeamViewer, AnyDesk',
-    ],
-  },
-  {
-    title: ' Monitoring & Incident Handling',
-    items: [
-      'ITIL workflows, ticketing, escalation',
-      'Root Cause Analysis, Preventive Maintenance',
-      'Capacity Monitoring, Log Analysis',
-    ],
-  },
-  {
-    title: ' Bonus Skills',
-    items: [
-      'Stripe integration for payments',
-      'UI/UX prototyping and layout restoration',
-      'Customer communication and documentation',
-      'Cross-functional stakeholder engagement',
-      'Cryptography basics and cipher key concepts',
-    ],
+    title: '🔐 Network & Security',
+    color: 'red.400',
+    items: ['DNS, SSL, TCP/IP', 'VPNs, Firewalls, IAM lifecycle'],
   },
 ];
 
 const Skills = () => {
+  const cardBg = useColorModeValue('white', 'gray.800');
+  const cardHoverBg = useColorModeValue('gray.100', 'gray.700');
+
   return (
-    <Box py={8} px={4} bg="gray.50">
+    <Box py={12} px={4} bg="gray.50">
       <Box maxW="1200px" mx="auto">
-        <Heading size="lg" mb={6} textAlign="center">Technical Skills</Heading>
+        <Heading
+          size="lg"
+          mb={8}
+          textAlign="center"
+          bgGradient="linear(to-r, teal.500, blue.500)"
+          bgClip="text"
+        >
+          Technical Skills
+        </Heading>
+
         <SimpleGrid columns={[1, 2, 3]} spacing={6}>
           {skills.map((skill, index) => (
             <Box
               key={index}
-              p={5}
-              bg="white"
+              p={6}
+              bg={cardBg}
               borderRadius="md"
               boxShadow="md"
-              transition="all 0.3s"
-              _hover={{ transform: 'scale(1.03)', boxShadow: 'xl', bg: 'gray.100' }}
+              transition="all 0.2s ease-in-out"
+              _hover={{
+                transform: 'scale(1.03)',
+                boxShadow: 'xl',
+                bg: cardHoverBg,
+              }}
             >
-              <Heading size="sm" mb={3}>{skill.title}</Heading>
-              <List spacing={2} fontSize="sm" color="gray.700">
+              <Heading size="md" mb={4} color={skill.color}>
+                {skill.title}
+              </Heading>
+              <List spacing={3} fontSize="sm" color="gray.700">
                 {skill.items.map((item, i) => (
-                  <ListItem key={i}>• {item}</ListItem>
+                  <ListItem key={i} display="flex" alignItems="center" gap={2}>
+                    <Icon as={CheckCircleIcon} color={skill.color} />
+                    {item}
+                  </ListItem>
                 ))}
               </List>
             </Box>
