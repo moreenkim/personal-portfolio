@@ -9,14 +9,14 @@ const screenshots = [
 
 const ConsoleGallery = () => {
   return (
-    <Box minH="80vh" py={8} px={6} bg="gray.50">
-      <Box maxW="1000px" mx="auto">
-        <Heading size="lg" mb={4}>AWS Console Gallery</Heading>
-        <SimpleGrid columns={[1, 2, 3]} spacing={6}>
+    <Box py={6} px={4} bg="gray.50">
+      <Box maxW="800px" mx="auto">
+        <Heading size="md" mb={3}>AWS Console Gallery</Heading>
+        <SimpleGrid columns={[1, 2]} spacing={4}>
           {screenshots.map((shot, index) => (
             <Box key={index}>
               <Image src={shot.src} alt={shot.title} borderRadius="md" />
-              <Text mt={2} fontWeight="medium">{shot.title}</Text>
+              <Text mt={1} fontSize="sm" fontWeight="medium">{shot.title}</Text>
             </Box>
           ))}
         </SimpleGrid>
